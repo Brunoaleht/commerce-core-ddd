@@ -12,69 +12,73 @@ import { Address } from "./address";
 //Importante: toda entidade tem q se autovalidar, ou seja, ela tem q ter regras de negocio
 
 export class Customer {
-  private id: string;
-  private name: string;
-  private address!: Address;
-  private active: boolean = false;
-  private rewardPoints: number = 0;
+  private _id: string;
+  private _name: string;
+  private _address!: Address;
+  private _active: boolean = false;
+  private _rewardPoints: number = 0;
 
   constructor(id: string, name: string) {
-    this.id = id;
-    this.name = name;
+    this._id = id;
+    this._name = name;
     this.validade();
   }
 
   validade() {
-    if (!this.id) {
+    if (!this._id) {
       throw new Error("Id is required");
     }
-    if (!this.name) {
+    if (!this._name) {
       throw new Error("Name is required");
     }
   }
 
   public getId(): string {
-    return this.id;
+    return this._id;
   }
 
   public getName(): string {
-    return this.name;
+    return this._name;
   }
 
   public getAddress(): Address {
-    return this.address;
+    return this._address;
   }
 
   // Colocar os meus methods de class como regra de negocio
   public changeName(name: string): void {
-    this.name = name;
+    this._name = name;
     this.validade();
   }
 
   set Address(address: Address) {
-    this.address = address;
+    this._address = address;
   }
 
   public activate(): void {
-    if (!this.address) {
+    if (!this._address) {
       throw new Error("Address mandatory to activate customer");
     }
-    this.active = true;
+    this._active = true;
   }
 
   public deactivate(): void {
-    this.active = false;
+    this._active = false;
   }
 
   public isActive(): boolean {
-    return this.active;
+    return this._active;
   }
 
   public getRewardPoints(): number {
-    return this.rewardPoints;
+    return this._rewardPoints;
   }
 
   public addRewardPoints(points: number): void {
-    this.rewardPoints += points;
+    this._rewardPoints += points;
+  }
+
+  public changeAddress(address: Address): void {
+    this._address = address;
   }
 }
