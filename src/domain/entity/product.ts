@@ -1,50 +1,62 @@
 export class Product {
-  private id: string;
-  private name: string;
-  private price: number;
+  private _id: string;
+  private _name: string;
+  private _price: number;
 
   constructor(id: string, name: string, price: number) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
+    this._id = id;
+    this._name = name;
+    this._price = price;
     this.validade();
   }
 
   validade(): boolean {
-    if (!this.id) {
+    if (!this._id) {
       throw new Error("Id is required");
     }
 
-    if (!this.name) {
+    if (!this._name) {
       throw new Error("Name is required");
     }
 
-    if (this.price <= 0) {
+    if (this._price <= 0) {
       throw new Error("Price must be greater than 0");
     }
 
     return true;
   }
 
+  get id(): string {
+    return this._id;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  get price(): number {
+    return this._price;
+  }
+
   getId(): string {
-    return this.id;
+    return this._id;
   }
 
   changeName(name: string): void {
-    this.name = name;
+    this._name = name;
     this.validade();
   }
 
   getName(): string {
-    return this.name;
+    return this._name;
   }
 
   getPrice(): number {
-    return this.price;
+    return this._price;
   }
 
   changePrice(price: number): void {
-    this.price = price;
+    this._price = price;
     this.validade();
   }
 }
