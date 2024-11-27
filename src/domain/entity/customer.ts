@@ -81,4 +81,15 @@ export class Customer {
   public changeAddress(address: Address): void {
     this._address = address;
   }
+
+  getAddressOrNull() {
+    const address = this.getAddress();
+    return {
+      street: address?.street ?? null,
+      number: address?.number ?? null,
+      zipCode: address?.zipCode ?? null,
+      city: address?.city ?? null,
+      state: address?.state ?? null,
+    };
+  }
 }

@@ -12,19 +12,19 @@ export class CustomerModel extends Model {
   @Column({ allowNull: false })
   declare name: string;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   declare street: string;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   declare number: number;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   declare zipCode: string;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   declare city: string;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   declare state: string;
 
   @Column({ allowNull: false })

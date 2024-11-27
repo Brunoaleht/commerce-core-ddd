@@ -10,14 +10,12 @@ import { CustomerModel } from "../db/sequelize/model/customer.model";
 
 export class CustomerRepository implements ICustomerRepository {
   async update(entity: Customer): Promise<void> {
+    const address = entity.getAddressOrNull();
+
     await CustomerModel.update(
       {
         name: entity.getName(),
-        street: entity.getAddress().street,
-        number: entity.getAddress().number,
-        zipCode: entity.getAddress().zipCode,
-        city: entity.getAddress().city,
-        state: entity.getAddress().state,
+        ...address,
         active: entity.isActive(),
         rewardPoints: entity.getRewardPoints(),
       },
@@ -51,6 +49,10 @@ export class CustomerRepository implements ICustomerRepository {
 
     customer.changeAddress(address);
 
+    if (customerModel.active) {
+      customer.activate();
+    }
+
     return customer;
   }
 
@@ -74,6 +76,11 @@ export class CustomerRepository implements ICustomerRepository {
         customerModel.number
       );
       customer.changeAddress(address);
+
+      if (customerModel.active) {
+        customer.activate();
+      }
+
       return customer;
     });
 
@@ -104,6 +111,11 @@ export class CustomerRepository implements ICustomerRepository {
         customerModel.number
       );
       customer.changeAddress(address);
+
+      if (customerModel.active) {
+        customer.activate();
+      }
+
       return customer;
     });
 
@@ -116,14 +128,12 @@ export class CustomerRepository implements ICustomerRepository {
   }
 
   async create(entity: Customer): Promise<void> {
+    const address = entity.getAddressOrNull();
+
     await CustomerModel.create({
       id: entity.getId(),
       name: entity.getName(),
-      street: entity.getAddress().street,
-      number: entity.getAddress().number,
-      zipCode: entity.getAddress().zipCode,
-      city: entity.getAddress().city,
-      state: entity.getAddress().state,
+      ...address,
       active: entity.isActive(),
       rewardPoints: entity.getRewardPoints(),
     });
