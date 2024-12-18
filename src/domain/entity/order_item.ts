@@ -1,6 +1,6 @@
 export class OrderItem {
-  private id: string;
-  private name: string;
+  private _id: string;
+  private _name: string;
   private price: number;
   private productId: string;
   private qtn: number;
@@ -12,8 +12,8 @@ export class OrderItem {
     productId: string,
     qtn: number
   ) {
-    this.id = id;
-    this.name = name;
+    this._id = id;
+    this._name = name;
     this.price = price;
     this.productId = productId;
     this.qtn = qtn;
@@ -21,10 +21,10 @@ export class OrderItem {
   }
 
   validade() {
-    if (!this.id) {
+    if (!this._id) {
       throw new Error("Id is required");
     }
-    if (!this.name) {
+    if (!this._name) {
       throw new Error("Name is required");
     }
     if (this.price <= 0) {
@@ -38,6 +38,14 @@ export class OrderItem {
     }
 
     return true;
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  get name(): string {
+    return this._name;
   }
 
   getPrice(): number {

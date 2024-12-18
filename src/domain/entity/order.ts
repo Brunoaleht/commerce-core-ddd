@@ -3,13 +3,13 @@
 import { OrderItem } from "./order_item";
 
 export class Order {
-  private id: string;
+  private _id: string;
   private customerId: string;
   private items: OrderItem[] = [];
   private total: number = 0;
 
   constructor(id: string, customerId: string, items: OrderItem[]) {
-    this.id = id;
+    this._id = id;
     this.customerId = customerId;
     this.items = items;
     this.total = this.totalOrder();
@@ -17,7 +17,7 @@ export class Order {
   }
 
   validate() {
-    if (!this.id) {
+    if (!this._id) {
       throw new Error("Id is required");
     }
     if (!this.customerId) {
@@ -30,6 +30,10 @@ export class Order {
     if (this.items.some((item) => item.getQtn() <= 0)) {
       throw new Error("Qtn must be greater than 0");
     }
+  }
+
+  get id(): string {
+    return this._id;
   }
 
   totalOrder(): number {
