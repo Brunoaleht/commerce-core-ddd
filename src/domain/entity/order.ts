@@ -4,13 +4,13 @@ import { OrderItem } from "./order_item";
 
 export class Order {
   private _id: string;
-  private customerId: string;
+  private _customerId: string;
   private items: OrderItem[] = [];
   private total: number = 0;
 
   constructor(id: string, customerId: string, items: OrderItem[]) {
     this._id = id;
-    this.customerId = customerId;
+    this._customerId = customerId;
     this.items = items;
     this.total = this.totalOrder();
     this.validate();
@@ -34,6 +34,14 @@ export class Order {
 
   get id(): string {
     return this._id;
+  }
+
+  get customerId(): string {
+    return this._customerId;
+  }
+
+  getItems(): OrderItem[] {
+    return this.items;
   }
 
   totalOrder(): number {

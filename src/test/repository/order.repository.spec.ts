@@ -10,6 +10,7 @@ import { ProductRepository } from "../../infra/repository/product.repository";
 import { Product } from "../../domain/entity/product";
 import { OrderItem } from "../../domain/entity/order_item";
 import { Order } from "../../domain/entity/order";
+import { OrderRepository } from "../../infra/repository/order.repository";
 
 describe("OrderRepository test", () => {
   let sequelize: Sequelize;
@@ -23,11 +24,12 @@ describe("OrderRepository test", () => {
     });
 
     sequelize.addModels([
-      CustomerModel,
       OrderModel,
+      CustomerModel,
       OrderItemModel,
       ProductModel,
     ]);
+
     await sequelize.sync();
   });
 

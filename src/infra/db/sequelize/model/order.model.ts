@@ -1,3 +1,5 @@
+import { CustomerModel } from "./customer.model";
+import { OrderItemModel } from "./order_item.model";
 import {
   BelongsTo,
   Column,
@@ -7,8 +9,6 @@ import {
   PrimaryKey,
   Table,
 } from "sequelize-typescript";
-import { CustomerModel } from "./customer.model";
-import { OrderItemModel } from "./order_item.model";
 
 @Table({
   tableName: "orders",
@@ -26,6 +26,7 @@ export class OrderModel extends Model {
   @BelongsTo(() => CustomerModel)
   declare customer: CustomerModel;
 
+  // Use uma função para resolver a relação de forma lazy
   @HasMany(() => OrderItemModel)
   declare items: OrderItemModel[];
 

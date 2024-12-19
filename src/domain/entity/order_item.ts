@@ -55,4 +55,8 @@ export class OrderItem {
   getQtn(): number {
     return this.qtn;
   }
+
+  getProductId(): string {
+    return this.productId;
+  }
 }

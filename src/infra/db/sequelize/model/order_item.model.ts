@@ -6,7 +6,6 @@ import {
   PrimaryKey,
   Table,
 } from "sequelize-typescript";
-
 import { ProductModel } from "./product.model";
 import { OrderModel } from "./order.model";
 
@@ -30,8 +29,8 @@ export class OrderItemModel extends Model {
   @Column({ allowNull: false })
   declare order_id: string;
 
-  @BelongsTo(() => OrderModel)
-  declare order: OrderModel;
+  // @BelongsTo(() => OrderModel)
+  // declare order: OrderModel;
 
   @Column({ allowNull: false })
   declare quantity: number;
