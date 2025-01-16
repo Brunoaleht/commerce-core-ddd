@@ -1,11 +1,12 @@
-import { Order, OrderItem } from "sequelize";
-import { Product } from "../../domain/entity/product";
-import { IProductRepository } from "../../domain/repository/product_repository.interface";
+import { Order } from "sequelize";
+import { Product } from "../../../../domain/product/entity/product";
+
 import {
   IMetadata,
   IQueryParams,
-} from "../../domain/repository/repository_interface";
-import { ProductModel } from "../db/sequelize/model/product.model";
+} from "../../../../domain/@Shared/repository/repository_interface";
+import { ProductModel } from "./product.model";
+import { IProductRepository } from "../../../../domain/product/repository/product_repository.interface";
 
 export class ProductRepository implements IProductRepository {
   async create(entity: Product): Promise<void> {

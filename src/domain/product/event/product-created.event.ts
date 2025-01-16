@@ -1,4 +1,4 @@
-import { IEvent } from "../@Shared/event.interface";
+import { IEvent } from "../../@Shared/event/event.interface";
 
 type ProductCreatedEventData = any;
 

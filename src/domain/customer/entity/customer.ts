@@ -1,6 +1,6 @@
 //Observar q no seu software vc tem uma entidade pra cuidar do neu negocio, e essa entidade tem q ter regras de negocio, e outra entidade/model q vai cuidar de armazenar os dados, ou seja, a entidade/model vai ser um espelho do banco de dados, e a entidade vai ser um espelho do seu negocio
 
-import { Address } from "./address";
+import { Address } from "../value-object/address";
 
 //Separar por pastas
 //infra -> tudo q é relacionado ao mundo externo (banco de dados, api, etc)

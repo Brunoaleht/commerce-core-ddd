@@ -1,12 +1,12 @@
 import { Order } from "sequelize";
-import { Address } from "../../domain/entity/address";
-import { Customer } from "../../domain/entity/customer";
-import { ICustomerRepository } from "../../domain/repository/customer_repository";
+import { ICustomerRepository } from "../../../../domain/customer/repository/customer_repository";
+import { Customer } from "../../../../domain/customer/entity/customer";
+import { CustomerModel } from "./customer.model";
 import {
-  IQueryParams,
   IMetadata,
-} from "../../domain/repository/repository_interface";
-import { CustomerModel } from "../db/sequelize/model/customer.model";
+  IQueryParams,
+} from "../../../../domain/@Shared/repository/repository_interface";
+import { Address } from "../../../../domain/customer/value-object/address";
 
 export class CustomerRepository implements ICustomerRepository {
   async update(entity: Customer): Promise<void> {
