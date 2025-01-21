@@ -9,6 +9,11 @@ export interface IAppOptions {
   env: NodeEnv;
 }
 
+export interface IServerInfo {
+  port: number;
+  started: boolean;
+}
+
 export class HttpServer {
   private readonly port: number;
   private readonly express: Express;
@@ -22,7 +27,6 @@ export class HttpServer {
     this.express = express();
     this.server = http.createServer(this.express);
     this.started = false;
-    return this;
   }
 
   private routes() {
@@ -43,9 +47,42 @@ export class HttpServer {
     });
   }
 
-  start() {
+  public getPort(): number {
+    return this.port;
+  }
+
+  public async start(): Promise<IServerInfo> {
+    if (this.started) {
+      throw new Error("Server is already running");
+    }
+
     this.routes();
-    this.started = true;
-    return this;
+
+    return new Promise((resolve) => {
+      this.server.listen(this.port, () => {
+        this.started = true;
+        resolve({
+          port: this.port,
+          started: this.started,
+        });
+      });
+    });
+  }
+
+  public async stop(): Promise<void> {
+    if (!this.started) {
+      throw new Error("Server is not running");
+    }
+
+    return new Promise((resolve, reject) => {
+      this.server.close((err) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        this.started = false;
+        resolve();
+      });
+    });
   }
 }
