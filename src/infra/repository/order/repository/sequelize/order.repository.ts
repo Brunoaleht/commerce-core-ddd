@@ -7,7 +7,7 @@ import {
   IMetadata,
   IQueryParams,
 } from "../../../../domain/@Shared/repository/repository_interface";
-import { CustomerModel } from "../../../customer/repository/sequelize/customer.model";
+import { CustomerModel } from "../../../customer/sequelize/customer.model";
 import { OrderModel } from "./order.model";
 import { OrderItemModel } from "./order_item.model";
 import { Customer } from "../../../../domain/customer/entity/customer";

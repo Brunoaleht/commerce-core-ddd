@@ -1,4 +1,4 @@
-import { CustomerModel } from "../../../customer/repository/sequelize/customer.model";
+import { CustomerModel } from "../../../customer/sequelize/customer.model";
 import { OrderItemModel } from "./order_item.model";
 import {
   BelongsTo,
