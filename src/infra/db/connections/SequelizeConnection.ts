@@ -1,5 +1,9 @@
 import { Sequelize, Dialect } from "sequelize";
 import { IDatabaseConfig, IDatabaseConnection } from "../db.interface";
+// import {ProductModel} from "../../repository/product/sequelize/product.model";
+// import {CustomerModel} from "../../repository/customer/sequelize/customer.model";
+// import {OrderModel} from "../../repository/order/sequelize/order.model";
+// import {OrderItemModel} from "../../repository/order/sequelize/order_item.model";
 
 export class SequelizeConnection implements IDatabaseConnection {
   private connection: Sequelize;
@@ -13,6 +17,12 @@ export class SequelizeConnection implements IDatabaseConnection {
       port: config.port,
       dialect: (config.dialect as Dialect) || "mysql",
       logging: false,
+    });
+
+    // Handling connection loss
+    this.connection.addHook("afterDisconnect", async () => {
+      console.log("Database connection lost. Attempting to reconnect...");
+      await this.connect(); // Reconnect logic
     });
   }
 

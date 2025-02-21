@@ -7,7 +7,7 @@ IndexRoute.get("/customer", (req, res) => {
     message: "Hello, Customer",
   });
 });
-IndexRoute.get("product", (req, res) => {});
+IndexRoute.get("/product", (req, res) => {});
 IndexRoute.get("/order", (req, res) => {});
 
 IndexRoute.get("/health-check", (req, res) => {
